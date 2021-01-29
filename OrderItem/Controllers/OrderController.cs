@@ -18,7 +18,6 @@ namespace OrderItem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class OrderController : ControllerBase
     {
         // GET: api/<OrderController>
@@ -42,7 +41,7 @@ namespace OrderItem.Controllers
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
 
-                client.BaseAddress = new Uri("https://localhost:44303/api/MenuItem/");
+                client.BaseAddress = new Uri("http://40.88.248.210/api/MenuItem/");
                 var responseTask = client.GetAsync(id.ToString());
                 responseTask.Wait();
 
