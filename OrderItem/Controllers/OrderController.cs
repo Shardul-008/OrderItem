@@ -32,14 +32,12 @@ namespace OrderItem.Controllers
         [HttpPost("{id}")]
         public Cart Post(int id, [FromBody]Object o)
         {
-            string Token = HttpContext.Request.Headers["Authorization"].Single().Split(" ")[1];
             string menuItemName="";
             HttpClientHandler clientHandler = new HttpClientHandler();
             clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
 
             using (var client = new HttpClient(clientHandler))
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
 
                 client.BaseAddress = new Uri("http://40.88.248.210/api/MenuItem/");
                 var responseTask = client.GetAsync(id.ToString());
